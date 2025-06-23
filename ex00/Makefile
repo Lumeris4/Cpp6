@@ -5,7 +5,7 @@ NAME = scalar
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -g3 -std=c++98
 
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = Scalar.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
