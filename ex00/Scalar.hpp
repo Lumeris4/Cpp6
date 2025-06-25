@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 11:01:13 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/25 13:04:07 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/06/25 15:13:55 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,11 @@ class ScalarConverter
 {
 	private:
 	ScalarConverter();
+	ScalarConverter(ScalarConverter const &copy);
+	ScalarConverter & operator=(ScalarConverter const &other);
+	~ScalarConverter();
 	
 	public:
-	~ScalarConverter();
 	static void Convert(std::string literral);
 	
 };

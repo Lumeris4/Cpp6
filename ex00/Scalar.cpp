@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:44:56 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/25 15:09:40 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:03:33 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,63 @@
 
 ScalarConverter::ScalarConverter() {};
 
+ScalarConverter::ScalarConverter(ScalarConverter const &copy)
+{
+	*this = copy;
+}
+
+ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other)
+{
+	(void)other;
+	return *this;
+}
+
 ScalarConverter::~ScalarConverter() {};
 
-std::string What_type(std::string literral)
+#include <string>
+#include <cctype>
+
+std::string What_type(std::string literal)
 {
-	if (literral.length() == 1 && isalpha(literral[0]))
-	{
-		return "char";
-	}
-	if (literral[0] == '-' || isdigit(literral[0]))
-	{
-		int i = 0;
-		bool is_int = true;
-		if (literral[0] == '-')
-			i = 1;
-		for (; literral[i]; i++)
-		{
-			if (!isdigit(literral[i]))
-			{
-				is_int = false;
-				break;
-			}	
-		}
-		if (is_int)
-			return "int";
-	}
-	if (literral[literral.length() - 1] == 'f') 
-	{
-		return "float";
-	}
-	else
-	{
-		return "double";
-	}
-	return "special";
+    if (literal == "nan" || literal == "nanf" ||
+        literal == "+inf" || literal == "-inf" ||
+        literal == "+inff" || literal == "-inff")
+        return "special";
+
+    if (literal.length() == 1 && isprint(literal[0]) && !isdigit(literal[0]))
+        return "char";
+
+    bool has_point = false;
+    bool has_f = false;
+    bool has_digit = false;
+    size_t i = 0;
+
+    if (literal[i] == '+' || literal[i] == '-')
+        i++;
+
+    for (; i < literal.length(); ++i)
+    {
+        if (isdigit(literal[i]))
+            has_digit = true;
+        else if (literal[i] == '.' && !has_point)
+            has_point = true;
+        else if (literal[i] == 'f' && i == literal.length() - 1)
+            has_f = true;
+        else
+            return "invalid";
+    }
+
+    if (!has_digit)
+        return "invalid";
+    if (has_point && has_f)
+        return "float";
+    if (has_point)
+        return "double";
+    if (has_f)
+        return "invalid";
+    return "int";
 }
+
 
 void ScalarConverter::Convert(std::string litteral)
 {
@@ -65,7 +87,11 @@ void ScalarConverter::Convert(std::string litteral)
 	else if (!What_type(litteral).compare("double"))
 	{
 		double c = atof(litteral.c_str());
-		if (isprint(c))
+		if (!isascii((int)c))
+		{
+			std::cout << "char: " << "Impossible" << std::endl;
+		}
+		else if (isprint((int)c))
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
@@ -77,7 +103,11 @@ void ScalarConverter::Convert(std::string litteral)
 	else if (!What_type(litteral).compare("float"))
 	{
 		float c = atof(litteral.c_str());
-		if (isprint(c))
+		if (!isascii((int)c))
+		{
+			std::cout << "char: " << "Impossible" << std::endl;
+		}
+		else if (isprint((int)c))
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
@@ -89,7 +119,11 @@ void ScalarConverter::Convert(std::string litteral)
 	else if (!What_type(litteral).compare("int"))
 	{
 		int c = atoi(litteral.c_str());
-		if (isprint(c))
+		if (!isascii((int)c))
+		{
+			std::cout << "char: " << "Impossible" << std::endl;
+		}
+		else if (isprint((int)c))
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
@@ -102,25 +136,25 @@ void ScalarConverter::Convert(std::string litteral)
 	{
 		if (litteral == "nan" || litteral == "nanf")
 		{
-		std::cout << "char: " << "impossible" << std::endl;
-		std::cout << "int: " << "impossible" << std::endl;
-		std::cout << "float: " << "nanf" << std::endl;
-		std::cout << "double: " << "nan" << std::endl;
-		return;
+			std::cout << "char: " << "impossible" << std::endl;
+			std::cout << "int: " << "impossible" << std::endl;
+			std::cout << "float: " << "nanf" << std::endl;
+			std::cout << "double: " << "nan" << std::endl;
+			return;
 		}
-		else if (litteral == "-inff")
+		else if (litteral == "-inff" || litteral == "-inf")
 		{
 			std::cout << "char: " << "impossible" << std::endl;
 			std::cout << "int: " << "impossible" << std::endl;
-			std::cout << "float: " << "impossible" << std::endl;
-			std::cout << "double: " << "impossible" << std::endl;
+			std::cout << "float: " << "-inff" << std::endl;
+			std::cout << "double: " << "-inf" << std::endl;
 		}
-		else if (litteral == "+inff")
+		else if (litteral == "+inff" || litteral == "+inf")
 		{
 			std::cout << "char: " << "impossible" << std::endl;
 			std::cout << "int: " << "impossible" << std::endl;
-			std::cout << "float: " << "impossible" << std::endl;
-			std::cout << "double: " << "impossible" << std::endl;
+			std::cout << "float: " << "+inff" << std::endl;
+			std::cout << "double: " << "+inf" << std::endl;
 		}
 	}
 	else
