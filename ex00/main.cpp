@@ -2,5 +2,5 @@
 
 int main()
 {
-	ScalarConverter::Convert("1");
+	ScalarConverter::Convert("c");
 }
