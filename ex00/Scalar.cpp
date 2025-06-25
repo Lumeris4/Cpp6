@@ -6,11 +6,12 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:44:56 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/25 16:03:33 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/06/25 16:58:36 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Scalar.hpp"
+#include <limits>
 
 ScalarConverter::ScalarConverter() {};
 
@@ -67,15 +68,21 @@ std::string What_type(std::string literal)
     if (has_point)
         return "double";
     if (has_f)
+	{
         return "invalid";
-    return "int";
+	}
+	long value = atol(literal.c_str());
+	if (value > __INT_MAX__ || (value <= -2147483648))
+    	return "invalid";
+	else
+		return "int";
 }
-
 
 void ScalarConverter::Convert(std::string litteral)
 {
-	std::cout << What_type(litteral) << std::endl; 
-	if (!What_type(litteral).compare("char"))
+	std::cout << What_type(litteral) << std::endl;
+	std::string type = What_type(litteral);
+	if (type == "char")
 	{
 		char c = litteral[0];
 		std::cout << "char: " << static_cast<char>(c) << std::endl;
@@ -84,7 +91,7 @@ void ScalarConverter::Convert(std::string litteral)
 		std::cout << "double: " << static_cast<double>(c) << ".0" <<std::endl;
 		return;
 	}
-	else if (!What_type(litteral).compare("double"))
+	else if (type == "double")
 	{
 		double c = atof(litteral.c_str());
 		if (!isascii((int)c))
@@ -95,12 +102,15 @@ void ScalarConverter::Convert(std::string litteral)
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
-		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		if ((int)c < __INT_MAX__ || c >= -2147483648)
+			std::cout << "int: " << static_cast<int>(c) << std::endl;
+		else 
+			std::cout << "int: Impossible" << std::endl;
 		std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
 		std::cout << "double: " << static_cast<double>(c) <<std::endl;
 		return;
 	}
-	else if (!What_type(litteral).compare("float"))
+	else if (type == "float")
 	{
 		float c = atof(litteral.c_str());
 		if (!isascii((int)c))
@@ -111,12 +121,15 @@ void ScalarConverter::Convert(std::string litteral)
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
-		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		if ((int)c < __INT_MAX__ || c > -2147483648)
+			std::cout << "int: " << static_cast<int>(c) << std::endl;
+		else 
+			std::cout << "int: Impossible" << std::endl;
 		std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
 		std::cout << "double: " << static_cast<double>(c) << std::endl;
 		return;
 	}
-	else if (!What_type(litteral).compare("int"))
+	else if (type == "int")
 	{
 		int c = atoi(litteral.c_str());
 		if (!isascii((int)c))
@@ -127,12 +140,15 @@ void ScalarConverter::Convert(std::string litteral)
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
-		std::cout << "int: " << static_cast<int>(c) << std::endl;
+		if ((int)c < __INT_MAX__ || c > -2147483648)
+			std::cout << "int: " << static_cast<int>(c) << std::endl;
+		else 
+			std::cout << "int: Impossible" << std::endl;
 		std::cout << "float: " << static_cast<float>(c) << ".0f" << std::endl;
 		std::cout << "double: " << static_cast<double>(c) << ".0" <<std::endl;
 		return;
 	}
-	else if (!What_type(litteral).compare("special"))
+	else if (type == "special")
 	{
 		if (litteral == "nan" || litteral == "nanf")
 		{
