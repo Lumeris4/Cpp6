@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:44:56 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/25 16:58:36 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/06/26 10:55:42 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ void ScalarConverter::Convert(std::string litteral)
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
-		if ((int)c < __INT_MAX__ || c >= -2147483648)
+		if (c < __INT_MAX__ && c >= -2147483648)
 			std::cout << "int: " << static_cast<int>(c) << std::endl;
 		else 
 			std::cout << "int: Impossible" << std::endl;
@@ -121,7 +121,7 @@ void ScalarConverter::Convert(std::string litteral)
 			std::cout << "char: " << static_cast<char>(c) << std::endl;
 		else 
 			std::cout << "char: " << "Non displayable" << std::endl;
-		if ((int)c < __INT_MAX__ || c > -2147483648)
+		if ((long long)c < __INT_MAX__ && c > -2147483648)
 			std::cout << "int: " << static_cast<int>(c) << std::endl;
 		else 
 			std::cout << "int: Impossible" << std::endl;
