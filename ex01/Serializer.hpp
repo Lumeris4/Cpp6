@@ -6,9 +6,11 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 10:59:19 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/26 11:30:51 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:38:11 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #include <stdint.h>
 #include <string>

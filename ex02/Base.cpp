@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:10:45 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/26 14:28:23 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/06/26 14:43:53 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 #include <cstdlib>
 #include <iostream>
 #include <time.h>
+#include "A.hpp"
+#include "B.hpp"
+#include "C.hpp"
 
 Base::~Base() {};
 
@@ -24,13 +27,16 @@ Base *generate()
 	switch (random)
 	{
 	case 0:
+		std::cout << "A created" << std::endl;
 		return new A;
 		break;
 	
 	case 1:
+		std::cout << "B created" << std::endl;
 		return new B;
 		break;
 	case 2:
+		std::cout << "C created" << std::endl;
 		return new C;
 		break;
 	}

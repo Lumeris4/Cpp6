@@ -1,23 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Base.hpp                                           :+:      :+:    :+:   */
+/*   C.hpp                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/26 12:57:56 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/26 14:41:27 by lelanglo         ###   ########.fr       */
+/*   Created: 2025/06/26 14:35:49 by lelanglo          #+#    #+#             */
+/*   Updated: 2025/06/26 14:38:05 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "Base.hpp"
 #pragma once
 
-class Base 
-{
-	public:
-	virtual ~Base();
-};
-
-Base * generate(void);
-void identify(Base* p);
-void identify(Base& p);
+class C: public Base {};
