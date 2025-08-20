@@ -6,12 +6,13 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/28 11:01:13 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/25 15:13:55 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:39:07 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
 #include <string>
+#include <cctype>
 #include <iostream>
 #include <cstdlib>
 

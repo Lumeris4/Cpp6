@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 13:44:56 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/26 10:55:42 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/08/20 18:38:54 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,6 @@ ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other)
 }
 
 ScalarConverter::~ScalarConverter() {};
-
-#include <string>
-#include <cctype>
 
 std::string What_type(std::string literal)
 {
