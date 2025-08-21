@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 13:10:45 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/26 14:43:53 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/08/21 08:56:49 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ Base *generate()
 void identify(Base *p)
 {
 	if (dynamic_cast<A *>(p))
-		std::cout << "This is A" << std::endl;
+		std::cout << "Identify with pointer : This is A" << std::endl;
 	else if (dynamic_cast<B *>(p))
-		std::cout << "This is B" << std::endl;
+		std::cout << "Identify with pointer : This is B" << std::endl;
 	else if (dynamic_cast<C *>(p))
-		std::cout << "This is C" << std::endl;
+		std::cout << "Identify with pointer : This is C" << std::endl;
 }
 
 void identify(Base &p)
@@ -58,7 +58,7 @@ void identify(Base &p)
 	try
 	{
 		A a = dynamic_cast<A &> (p);
-		std::cout << "This is A" << std::endl;
+		std::cout << "Identify with reference : This is A" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -67,7 +67,7 @@ void identify(Base &p)
 	try
 	{
 		B b = dynamic_cast<B &> (p);
-		std::cout << "This is B" << std::endl;
+		std::cout << "Identify with reference : This is B" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -76,7 +76,7 @@ void identify(Base &p)
 	try
 	{
 		C c = dynamic_cast<C &> (p);
-		std::cout << "This is C" << std::endl;
+		std::cout << "Identify with reference : This is C" << std::endl;
 	}
 	catch(const std::exception& e)
 	{

@@ -6,7 +6,7 @@
 /*   By: lelanglo <lelanglo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 12:57:48 by lelanglo          #+#    #+#             */
-/*   Updated: 2025/06/26 14:24:20 by lelanglo         ###   ########.fr       */
+/*   Updated: 2025/08/21 08:54:50 by lelanglo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@ int main()
 
 	identify(test);
 	identify(*test);
+	delete test;
 }
